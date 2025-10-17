@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DayPilot — Smart Day Planner</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>🧭 DayPilot — Smart Daily Planner</h1>
+
+    <form method="POST" enctype="multipart/form-data" id="plannerForm">
+      <label for="text_input">Enter your tasks or plans:</label>
+      <textarea name="text_input" id="text_input" placeholder="e.g. Meeting with Sam at 3 pm&#10;Work on project report"></textarea>
+
+      <label for="file_input">Or upload an image / PDF / text file:</label>
+      <input type="file" name="file_input" id="file_input">
+
+      <button type="submit">Plan My Day</button>
+    </form>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="error-box">
+          {% for message in messages %}
+            <p>{{ message }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    {% if schedule %}
+      <section class="schedule">
+        <h2>📅 Generated Schedule</h2>
+        <div id="schedule-list">
+          {% for t, task in schedule %}
+            <div class="task">
+              <span class="time">{{ t }}</span>
+              <span class="desc">{{ task }}</span>
+            </div>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+
+    {% if all_schedules %}
+      <section class="history">
+        <h3>🕓 Recent Plans</h3>
+        <ul>
+          {% for s in all_schedules %}
+            <li><strong>{{ s.time }}</strong> — {{ s.task }}</li>
+          {% endfor %}
+        </ul>
+      </section>
+    {% endif %}
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
