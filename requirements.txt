@@ -1,0 +1,8 @@
+flask
+python-dateutil
+pytesseract
+pdfplumber
+pillow
+werkzeug
+gunicorn
+requests
