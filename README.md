@@ -47,7 +47,7 @@ DayPilot/
 
 Bash
 
-git clone https://github.com/your-username/DayPilot.git
+git clone https://github.com/Kristen1st/DayPilot.git
 cd DayPilot
 Create a virtual environment and install dependencies:
 
@@ -75,3 +75,4 @@ The app is deployed on Render (Free Tier):
 Live URL: https://daypilot.onrender.com
 
 Auto-deploys from GitHub on every commit
+
